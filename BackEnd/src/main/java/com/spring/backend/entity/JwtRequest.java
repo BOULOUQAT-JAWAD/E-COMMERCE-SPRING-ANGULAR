@@ -3,7 +3,7 @@ package com.spring.backend.entity;
 public class JwtRequest {
 
     private String UserName;
-    private String UserPasswod;
+    private String UserPassword;
 
     public String getUserName() {
         return UserName;
@@ -13,11 +13,11 @@ public class JwtRequest {
         UserName = userName;
     }
 
-    public String getUserPasswod() {
-        return UserPasswod;
+    public String getUserPassword() {
+        return UserPassword;
     }
 
-    public void setUserPasswod(String userPasswod) {
-        UserPasswod = userPasswod;
+    public void setUserPassword(String userPassword) {
+        UserPassword = userPassword;
     }
 }
