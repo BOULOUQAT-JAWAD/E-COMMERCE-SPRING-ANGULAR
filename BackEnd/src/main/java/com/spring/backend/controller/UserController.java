@@ -34,6 +34,6 @@ public class UserController {
     @PostMapping({"/forUser"})
     @PreAuthorize("hasRole('User')")
     public String forUser(){
-        return "This URL is only accessible to the admins";
+        return "This URL is only accessible to the users";
     }
 }
