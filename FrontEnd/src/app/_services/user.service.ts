@@ -22,6 +22,14 @@ export class UserService {
     });
   }
   
+  public forUser(){
+    return this.httpclient.get(this.PATH_OF_API+'/forUser', {responseType: 'text'});
+  }
+  
+  public forAdmin(){
+    return this.httpclient.get(this.PATH_OF_API+'/forAdmin', {responseType: 'text'});
+  }
+
   public roleMatch(allowedRoles: string[]): Boolean{
     let isMatch = false
     const userRole: any = this.userAuthService.getRoles();
