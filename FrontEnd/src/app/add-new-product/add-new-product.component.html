@@ -5,7 +5,8 @@
                 <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Product Name</mat-label>
-                        <input matInput placeholder="Product Name" [(ngModel)]="product.productName" name="productName">
+                        <input matInput placeholder="Product Name" 
+                                [(ngModel)]="product.productName" name="productName">
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="w-100">
@@ -34,7 +35,23 @@
                 </form>
             </div>
             <div class="col-6">
-                Image areas
+                <div>
+                    <input type="file" multiple value="select" #selectFile
+                        (change)="onFileSelected($event)"    
+                    >
+                </div>
+                <div class="mt-5">
+                    <div class="row">
+                        <mat-grid-list cols="4" rowHeight="1:1">
+                            <mat-grid-tile *ngFor="let file of product.productImages; let i = index">
+                                <div style="position: relative;">
+                                    <span class="btn-remove-image" (click)="removeImage(i)">x</span>
+                                    <img [src]="file.url" width="100px" height="100px">
+                                </div>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
