@@ -44,7 +44,7 @@ public class WebSecurityConfiguration{
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("/authenticate","/registerNewUser").permitAll()
+                                .requestMatchers("/authenticate","/registerNewUser","/getAllProducts","/getProductDetailsById/{productId}").permitAll()
                                 .requestMatchers(HttpHeaders.ALLOW).permitAll()
                                 .anyRequest().authenticated()
                 ).exceptionHandling((exceptionHandling) -> exceptionHandling

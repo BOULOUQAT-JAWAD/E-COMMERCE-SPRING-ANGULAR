@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 import { ShowProductDetailsComponent } from './show-product-details/show-product-details.component';
 import { ShowProductImagesDialogComponent } from './show-product-images-dialog/show-product-images-dialog.component';
+import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ShowProductImagesDialogComponent } from './show-product-images-dialog/s
     ForbiddenComponent,
     AddNewProductComponent,
     ShowProductDetailsComponent,
-    ShowProductImagesDialogComponent
+    ShowProductImagesDialogComponent,
+    ProductViewDetailsComponent
   ],
   imports: [
     BrowserModule,
