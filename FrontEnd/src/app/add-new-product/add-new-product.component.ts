@@ -43,8 +43,8 @@ export class AddNewProductComponent {
 
     this.productService.addProduct(productFormData).subscribe(
       (response: Product) => {
-        productForm.reset();
         this.product.productImages = [];
+        productForm.reset();
       },
       (error: HttpErrorResponse) =>{
         console.error(error);

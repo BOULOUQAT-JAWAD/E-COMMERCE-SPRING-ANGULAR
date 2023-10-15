@@ -14,9 +14,9 @@ public class OrderDetail {
     private String orderAlternateContactNumber;
     private String orderStatus;
     private Double orderAmount;
-    @OneToOne
+    @ManyToOne
     private Product product;
-    @OneToOne
+    @ManyToOne
     private User user;
 
     public OrderDetail() {}

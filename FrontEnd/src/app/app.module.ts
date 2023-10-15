@@ -28,6 +28,7 @@ import { AddNewProductComponent } from './add-new-product/add-new-product.compon
 import { ShowProductDetailsComponent } from './show-product-details/show-product-details.component';
 import { ShowProductImagesDialogComponent } from './show-product-images-dialog/show-product-images-dialog.component';
 import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
+import { BuyProductComponent } from './buy-product/buy-product.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ProductViewDetailsComponent } from './product-view-details/product-view
     AddNewProductComponent,
     ShowProductDetailsComponent,
     ShowProductImagesDialogComponent,
-    ProductViewDetailsComponent
+    ProductViewDetailsComponent,
+    BuyProductComponent
   ],
   imports: [
     BrowserModule,

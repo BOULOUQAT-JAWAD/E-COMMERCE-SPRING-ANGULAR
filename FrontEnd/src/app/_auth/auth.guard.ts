@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
        Observable<boolean | UrlTree> |
         Promise<boolean | UrlTree> {
 
-    if(this.userAuthService.getToken !== null){
+    if(this.userAuthService.getToken() !== ''){
       const role = route.data['roles'] as Array<string>;
 
       if(role){

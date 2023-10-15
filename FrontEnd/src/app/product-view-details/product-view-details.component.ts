@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../_model/product.model';
 
 @Component({
@@ -14,12 +14,18 @@ export class ProductViewDetailsComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router
   ){
     this.product = this.activatedRoute.snapshot.data['product'];
-    console.log(this.product);
   }
 
   changeIndex(i: number){
     this.selectedProductIndex = i;
+  }
+
+  buyProduct(productId: number){
+    this.router.navigate(['buyProduct',{
+      isSingleProductCheckout: true, id: productId
+    }]);
   }
 }
