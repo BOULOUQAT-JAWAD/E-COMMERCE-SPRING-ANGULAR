@@ -30,9 +30,9 @@ export class ShowProductDetailsComponent {
     this.getAllProducts();
   }
 
-  public getAllProducts(){
+  public getAllProducts(searchkeyword: string = ""){
     this.showTable = false;
-    this.productService.getAllProducts(this.pageNumber)
+    this.productService.getAllProducts(this.pageNumber,searchkeyword)
     .pipe(
       map((x: Product[],i) => x.map((product: Product) => this.imageProcessingService.createImages(product)))
     )
@@ -81,5 +81,11 @@ export class ShowProductDetailsComponent {
   loadMoreProduct(){
     this.pageNumber++;
     this.getAllProducts();
+  }
+
+  searchBykeyword(searchkeyword: string){
+    this.pageNumber = 0;
+    this.productDetails = [];
+    this.getAllProducts(searchkeyword);
   }
 }

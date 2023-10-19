@@ -25,8 +25,8 @@ export class HomeComponent {
     this.getAllProducts();
   }
 
-  public getAllProducts(){
-    this.productService.getAllProducts(this.pageNumber)
+  public getAllProducts(searchkeyword: string = ""){
+    this.productService.getAllProducts(this.pageNumber,searchkeyword)
     .pipe(
       map((x: Product[],i) => x.map((product: Product) => this.imageProcessingService.createImages(product)))
     )
@@ -51,5 +51,11 @@ export class HomeComponent {
 
   showProductDetails(productId: any){
     this.router.navigate(['/productViewDetails', {productId: productId}]);
+  }
+
+  searchBykeyword(searchkeyword: string){
+    this.pageNumber = 0;
+    this.productDetails = [];
+    this.getAllProducts(searchkeyword);
   }
 }
