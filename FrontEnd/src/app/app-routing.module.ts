@@ -12,14 +12,17 @@ import { ProductResolveService } from './product-resolve.service';
 import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
 import { BuyProductComponent } from './buy-product/buy-product.component';
 import { BuyProductResolverService } from './buy-product-resolver.service';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'admin', component: AdminComponent, canActivate:[AuthGuard], data:{roles:['Admin']} },
-  { path: 'user', component: UserComponent ,  canActivate:[AuthGuard], data:{roles:['User']} },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard], data: { roles: ['User'] } },
   { path: 'login', component: LoginComponent },
   { path: 'forbidden', component: ForbiddenComponent },
-  { path: 'addNewProduct', component: AddNewProductComponent, canActivate:[AuthGuard], data:{roles:['Admin']}, 
+  {
+    path: 'addNewProduct', component: AddNewProductComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] },
     resolve: {
       product: ProductResolveService
     }
@@ -32,10 +35,16 @@ const routes: Routes = [
     }
   },
   {
-    path: 'buyProduct', component: BuyProductComponent, canActivate: [AuthGuard],data:{roles:['User']}, 
-      resolve: {
-        productDetails: BuyProductResolverService
-      }
+    path: 'buyProduct', component: BuyProductComponent, canActivate: [AuthGuard], data: { roles: ['User'] },
+    resolve: {
+      productDetails: BuyProductResolverService
+    }
+  },
+  {
+    path: 'orderConfirm', component: OrderConfirmationComponent, canActivate: [AuthGuard], data: { roles: ['User'] }
+  },
+  {
+    path: 'register', component: RegisterComponent
   }
 ];
 

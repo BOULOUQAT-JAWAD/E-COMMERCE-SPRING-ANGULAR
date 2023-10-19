@@ -29,6 +29,8 @@ import { ShowProductDetailsComponent } from './show-product-details/show-product
 import { ShowProductImagesDialogComponent } from './show-product-images-dialog/show-product-images-dialog.component';
 import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
 import { BuyProductComponent } from './buy-product/buy-product.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { BuyProductComponent } from './buy-product/buy-product.component';
     ShowProductDetailsComponent,
     ShowProductImagesDialogComponent,
     ProductViewDetailsComponent,
-    BuyProductComponent
+    BuyProductComponent,
+    OrderConfirmationComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

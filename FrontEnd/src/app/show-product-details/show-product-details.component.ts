@@ -15,6 +15,9 @@ import { Router } from '@angular/router';
 })
 export class ShowProductDetailsComponent {
 
+  showLoadMoreProductButton = false;
+  showTable = false;
+  pageNumber: number = 0;
   productDetails: Product[] = [];
   displayedColumns: string[] = ['Id','Name','Description','Discounted Price','Actual Price','Images','Edit','Delete'];
 
@@ -28,14 +31,20 @@ export class ShowProductDetailsComponent {
   }
 
   public getAllProducts(){
-    this.productService.getAllProducts()
+    this.showTable = false;
+    this.productService.getAllProducts(this.pageNumber)
     .pipe(
       map((x: Product[],i) => x.map((product: Product) => this.imageProcessingService.createImages(product)))
     )
     .subscribe(
       (response: Product[]) => {
-        console.log(response);
-        this.productDetails = response;
+        response.forEach(product => this.productDetails.push(product));
+        this.showTable = true;
+
+        if(response.length == 10)
+          this.showLoadMoreProductButton = true;
+        else
+          this.showLoadMoreProductButton = false;
       },
       (error: HttpErrorResponse) => {
         console.error(error);
@@ -67,5 +76,10 @@ export class ShowProductDetailsComponent {
 
   editProdcutDetails(productId: number){
     this.router.navigate(['/addNewProduct', {productId: productId}]);
+  }
+
+  loadMoreProduct(){
+    this.pageNumber++;
+    this.getAllProducts();
   }
 }
