@@ -1,6 +1,7 @@
 package com.spring.backend.service;
 
 import com.spring.backend.configuration.JwtRequestFilter;
+import com.spring.backend.dao.CartDAO;
 import com.spring.backend.dao.OrderDetailDao;
 import com.spring.backend.dao.ProductDao;
 import com.spring.backend.dao.UserDao;
@@ -21,8 +22,10 @@ public class OrderDetailService {
     private ProductDao productDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private CartDAO cartDAO;
 
-    public void placeOrder(OrderInput orderInput){
+    public void placeOrder(OrderInput orderInput, boolean isSingleProductCheckout){
         List<OrderProductQuantity> productQuantityList = orderInput.getOrderProductQuantityList();
 
         for (OrderProductQuantity o : productQuantityList){
@@ -42,6 +45,13 @@ public class OrderDetailService {
                 product,
                 user
             );
+
+            //empty the cart
+            if (!isSingleProductCheckout){
+                List<Cart> carts = cartDAO.findByUser(user);
+                carts.stream().forEach(x -> cartDAO.deleteById(x.getCartId()));
+            }
+
             orderDetailDao.save(orderDetail);
         }
     }
