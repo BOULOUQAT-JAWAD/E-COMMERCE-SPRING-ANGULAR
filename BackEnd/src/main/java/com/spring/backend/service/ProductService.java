@@ -1,7 +1,12 @@
 package com.spring.backend.service;
 
+import com.spring.backend.configuration.JwtRequestFilter;
+import com.spring.backend.dao.CartDAO;
 import com.spring.backend.dao.ProductDao;
+import com.spring.backend.dao.UserDao;
+import com.spring.backend.entity.Cart;
 import com.spring.backend.entity.Product;
+import com.spring.backend.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -9,12 +14,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
 
     @Autowired
     private ProductDao productDao;
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private CartDAO cartDAO;
 
     public Product addNewProduct(Product product){
         return productDao.save(product);
@@ -46,8 +58,10 @@ public class ProductService {
             list.add(product);
             return list;
         }else {
-
+            String username = JwtRequestFilter.CURRENT_USER;
+            User user = userDao.findById(username).get();
+            List<Cart> carts = cartDAO.findByUser(user);
+            return carts.stream().map(Cart::getProduct).collect(Collectors.toList());
         }
-        return new ArrayList<>();
     }
 }

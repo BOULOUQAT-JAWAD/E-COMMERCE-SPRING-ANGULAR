@@ -52,7 +52,6 @@ public class ProductController {
     @GetMapping({"/getAllProducts"})
     public List<Product> getAllProducts(@RequestParam(defaultValue = "0") int pageNumber,
                                         @RequestParam(defaultValue = "") String searchKey){
-        System.out.println(searchKey);
         return productService.getAllProducts(pageNumber,searchKey);
     }
 

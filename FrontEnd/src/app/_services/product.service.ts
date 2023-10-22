@@ -35,4 +35,12 @@ export class ProductService {
   public placeOrder(orderDetails: OrderDetails){
     return this.httpClient.post("http://localhost:8080/placeOrder",orderDetails);
   }
+
+  public addToCart(productId: number){
+    return this.httpClient.get("http://localhost:8080/addToCart/"+productId);
+  }
+
+  public getCartDetails(){
+    return this.httpClient.get("http://localhost:8080/getCartDetails/");
+  }
 }
